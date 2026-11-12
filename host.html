@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuizArena · Anfitrión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== EDITOR ===== -->
+  <section id="s-editor" data-screen class="wrap">
+    <div class="topbar">
+      <a href="index.html" class="logo" style="text-decoration:none">Quiz<span>Arena</span></a>
+      <div class="spacer"></div>
+      <button class="btn light small" id="btnImport">Importar JSON</button>
+      <button class="btn light small" id="btnExport">Exportar JSON</button>
+      <button class="btn danger small" id="btnReset">Ejemplo</button>
+      <input type="file" id="fileInput" accept=".json,application/json" class="hidden">
+    </div>
+
+    <div class="q-card">
+      <input id="quizTitle" class="editor-title" placeholder="Título del cuestionario">
+    </div>
+
+    <div id="questions"></div>
+
+    <p class="hint">Marca con el círculo la respuesta correcta. Las opciones vacías se omiten (mínimo 2). Todo se guarda automáticamente en este navegador.</p>
+
+    <div class="row" style="margin-bottom:40px">
+      <button class="btn light" id="btnAdd">+ Agregar pregunta</button>
+      <div class="spacer"></div>
+      <span class="error" id="editorError" style="color:#ffd23f"></span>
+      <button class="btn ok" id="btnHost">▶ Iniciar juego</button>
+    </div>
+  </section>
+
+  <!-- ===== LOBBY ===== -->
+  <section id="s-lobby" data-screen class="center hidden">
+    <h1 class="logo" style="font-size:2.2rem">Quiz<span>Arena</span></h1>
+    <div class="pin-box">
+      <div>
+        <div class="pin-label">Entra a <span class="join-url" id="joinUrl"></span></div>
+        <div class="pin-label" style="margin-top:6px">PIN del juego:</div>
+        <div class="pin" id="pinText">······</div>
+      </div>
+      <div id="qrcode"></div>
+    </div>
+    <p class="error" id="lobbyStatus" style="color:#ffd23f"></p>
+    <div class="count" id="playerCount">0 jugadores</div>
+    <div class="players" id="playerList"></div>
+    <div class="row">
+      <button class="btn light" id="btnBackEditor">Volver al editor</button>
+      <button class="btn ok" id="btnStart" disabled>Comenzar</button>
+    </div>
+  </section>
+
+  <!-- ===== PREGUNTA ===== -->
+  <section id="s-question" data-screen class="game hidden">
+    <div class="q-meta">
+      <span id="qCounter">1 / 10</span>
+      <span id="quizName"></span>
+      <button class="btn light small" id="btnSkip">Terminar tiempo</button>
+    </div>
+    <div class="q-text" id="qText"></div>
+    <div class="progress"><div id="qProgress"></div></div>
+    <div class="q-meta">
+      <div class="timer" id="qTimer">20</div>
+      <div class="answered"><b id="qAnswered">0</b>respuestas</div>
+    </div>
+    <div class="opts-show" id="qOptions"></div>
+    <div class="row end hidden" id="revealActions">
+      <button class="btn light" id="btnToBoard">Ver posiciones ➜</button>
+    </div>
+  </section>
+
+  <!-- ===== POSICIONES ===== -->
+  <section id="s-board" data-screen class="center hidden">
+    <h2 class="title-white">Tabla de posiciones</h2>
+    <div class="board" id="boardList"></div>
+    <button class="btn light" id="btnNext" style="margin-top:16px">Siguiente pregunta ➜</button>
+  </section>
+
+  <!-- ===== PODIO ===== -->
+  <section id="s-podium" data-screen class="center hidden">
+    <h2 class="title-white">🏆 ¡Resultados finales!</h2>
+    <div class="podium" id="podium"></div>
+    <div class="board" id="finalList"></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn light" id="btnDownload">Descargar resultados (CSV)</button>
+      <button class="btn ok" id="btnAgain">Jugar de nuevo</button>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/host.js"></script>
+</body>
+</html>

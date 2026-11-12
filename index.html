@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuizArena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="center">
+    <h1 class="logo">Quiz<span>Arena</span></h1>
+    <p class="tagline">Juegos de preguntas en vivo para tu clase o tus amigos</p>
+
+    <form class="card stack" id="joinForm" autocomplete="off">
+      <h2>Unirse a un juego</h2>
+      <input id="pin" inputmode="numeric" maxlength="6" placeholder="PIN del juego" style="text-align:center" required>
+      <button class="btn primary block" type="submit">Entrar</button>
+    </form>
+
+    <div class="card stack">
+      <h2>¿Eres el anfitrión?</h2>
+      <p class="muted">Crea tus preguntas y proyecta la pantalla para que todos jueguen.</p>
+      <a class="btn ok block" href="host.html">Crear / organizar un juego</a>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('joinForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var pin = document.getElementById('pin').value.replace(/\D/g, '');
+      if (pin) location.href = 'play.html?pin=' + pin;
+    });
+  </script>
+</body>
+</html>

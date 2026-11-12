@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>QuizArena · Jugar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== UNIRSE ===== -->
+  <section id="p-join" data-screen class="center">
+    <h1 class="logo">Quiz<span>Arena</span></h1>
+    <form class="card stack" id="joinForm" autocomplete="off">
+      <input id="pinInput" inputmode="numeric" maxlength="6" placeholder="PIN del juego" style="text-align:center" required>
+      <input id="nameInput" maxlength="20" placeholder="Tu nombre" style="text-align:center" required>
+      <button class="btn primary block" id="joinBtn" type="submit">¡Entrar!</button>
+      <div class="error" id="joinError"></div>
+    </form>
+  </section>
+
+  <!-- ===== JUEGO ===== -->
+  <section id="p-game" data-screen class="hidden">
+    <div class="player-bar">
+      <span id="barName"></span>
+      <span id="barInfo"></span>
+      <span id="barScore">0</span>
+    </div>
+
+    <div class="player-main">
+      <!-- Espera -->
+      <div id="v-wait" data-view class="center" style="min-height:calc(100vh - 48px)">
+        <p class="big-msg" id="waitTitle">¡Ya estás dentro!</p>
+        <p class="sub-msg" id="waitSub">¿Ves tu nombre en la pantalla?</p>
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Responder -->
+      <div id="v-answer" data-view class="hidden" style="display:flex;flex-direction:column;flex:1">
+        <div class="q-text" id="pQuestion" style="margin:12px 12px 0;font-size:1.2rem"></div>
+        <div class="progress" style="margin:12px 12px 0"><div id="pProgress"></div></div>
+        <div class="answer-grid" id="answerGrid"></div>
+      </div>
+
+      <!-- Resultado -->
+      <div id="v-result" data-view class="result-screen hidden">
+        <div class="result-icon" id="resIcon">✔</div>
+        <p class="big-msg" id="resTitle">¡Correcto!</p>
+        <p class="sub-msg" id="resSub"></p>
+        <div class="points-pill" id="resPoints">+0</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/play.js"></script>
+</body>
+</html>
